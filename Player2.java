@@ -23,18 +23,49 @@ public class Player2 {
     
 public Player2(int cWidth, int cHeight) {
         this.alive = true;
-        this.x = cWidth / 4;
-        this.y = cHeight / 4;
+        this.x = cWidth;
+        this.y = cHeight / 2;
         this.vx = 0;
         this.vy = 0;
         this.width = 50;
         this.height = 50;
         this.score = 0;
-        this.color = Color.GREEN;
+        this.color = Color.BLUE;
         this.bounds = new Rectangle(this.x, this.y, this.width, this.height);
 }
-        
 
+    public int getVx() {
+        return vx;
+    }
+
+    public void setVx(int vx) {
+        this.vx = vx;
+    }
+
+    public int getVy() {
+        return vy;
+    }
+
+    public void setVy(int vy) {
+        this.vy = vy;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
+
+    public Rectangle getBounds() {
+        return bounds;
+    }
+
+    public void setBounds(Rectangle bounds) {
+        this.bounds = bounds;
+    }
+        
     public boolean isAlive() {
         return alive;
     }
@@ -42,18 +73,24 @@ public Player2(int cWidth, int cHeight) {
     public void setAlive(boolean alive) {
         this.alive = alive;
     }
-        
-    
-    public void move(String direction) {        
-        if (direction.equals("right"))
-            vx = SPEED;
-        else if (direction.equals("left"))
-            vx = -SPEED;
-        else if (direction.equals("up"))
-            vy = -SPEED;
-        else if (direction.equals("down"))
-            vy = SPEED;
+
+    public int getX() {
+        return x;
     }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+       
+    
     
      public void draw(Graphics g) {
         g.setColor(this.color);

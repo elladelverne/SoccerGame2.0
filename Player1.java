@@ -23,14 +23,14 @@ public class Player1 {
     
 public Player1(int cWidth, int cHeight) {
         this.alive = true;
-        this.x = cWidth / 2;
+        this.x = 1;
         this.y = cHeight / 2;
         this.vx = 0;
         this.vy = 0;
         this.width = 50;
         this.height = 50;
         this.score = 0;
-        this.color = Color.CYAN;
+        this.color = Color.GREEN;
         this.bounds = new Rectangle(this.x, this.y, this.width, this.height);
         }
 
@@ -40,6 +40,38 @@ public Player1(int cWidth, int cHeight) {
 
     public void setAlive(boolean alive) {
         this.alive = alive;
+    }
+
+    public int getVx() {
+        return vx;
+    }
+
+    public void setVx(int vx) {
+        this.vx = vx;
+    }
+
+    public int getVy() {
+        return vy;
+    }
+
+    public void setVy(int vy) {
+        this.vy = vy;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
+
+    public Rectangle getBounds() {
+        return bounds;
+    }
+
+    public void setBounds(Rectangle bounds) {
+        this.bounds = bounds;
     }
     
         

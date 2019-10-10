@@ -94,5 +94,9 @@ public void update(){
         this.y += vy;
         this.bounds = new Rectangle(this.x, this.y, this.width, this.height);
     }
+public void stop() {
+        this.vx = 0;
+        this.vy = 0;
+    }
 }
 

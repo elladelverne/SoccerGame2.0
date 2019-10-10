@@ -24,7 +24,7 @@ public class Player1 {
 public Player1(int cWidth, int cHeight) {
         this.alive = true;
         this.x = 1;
-        this.y = cHeight / 2;
+        this.y = 200;
         this.vx = 0;
         this.vy = 0;
         this.width = 50;
@@ -33,6 +33,22 @@ public Player1(int cWidth, int cHeight) {
         this.color = Color.GREEN;
         this.bounds = new Rectangle(this.x, this.y, this.width, this.height);
         }
+
+    public int getX() {
+        return x;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
 
     public boolean isAlive() {
         return alive;

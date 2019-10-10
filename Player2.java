@@ -18,13 +18,12 @@ public class Player2 {
     private int height, width, x, y, vx, vy, score;
     private Rectangle bounds;
     private Color color;
-    private final int SPEED = 15;
     private boolean alive;
     
 public Player2(int cWidth, int cHeight) {
         this.alive = true;
         this.x = cWidth;
-        this.y = cHeight / 2;
+        this.y = 400;
         this.vx = 0;
         this.vy = 0;
         this.width = 50;

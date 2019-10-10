@@ -107,9 +107,8 @@ public class Field extends JPanel {
             }
         }
         if(ball.isGoal()&& player2.getBounds().intersects(ball.getBounds())){
-            if(goal2.getX()> player2.getX()){
                 if (goal2.getX()< player2.getX()){
-                    player2.setX(player2.getX()-3);
+                    player2.setVx(player2.getVx()-3);
                 }
                 if (goal2.getY()> player2.getY()){
                     player2.setY(player2.getY()+3);
@@ -117,7 +116,6 @@ public class Field extends JPanel {
                 if (goal2.getY()< player2.getY()){
                     player2.setY(player2.getY()-3);
                 }
-            }
             player2.setVx(-3);
             ball.setVx(player2.getVx());
             player2.setVy(-3);

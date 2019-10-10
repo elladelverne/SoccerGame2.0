@@ -31,7 +31,6 @@ public Ball(int cWidth, int cHeight) {
         this.color = Color.GRAY;
         this.bounds = new Rectangle(this.x, this.y, this.width, this.height);
 }
-
     public boolean isGoal() {
         return goal;
     }
@@ -79,8 +78,6 @@ public Ball(int cWidth, int cHeight) {
     public void setY(int y) {
         this.y = y;
     }
-
-
 
 public void draw(Graphics g){
         g.setColor(this.color);

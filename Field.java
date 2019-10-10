@@ -55,39 +55,73 @@ public class Field extends JPanel {
             goal1.update();
             goal2.update();
             checkCollisions();
-            //add chaseGoal method and call it in checkCollisions
-            //Create a boundaries method so the ball and players bounce off a 
-            //wall. Try to rework your previous code for the idea. For some 
-            //reason all of your graphics disapeared when you tried to do that
-            //way to figure it out.
+            checkBoundaries();
             chaseBall();
             repaint();
         }
     }
-
+    private void checkBoundaries(){
+        if(ball.getX()<=0){
+            ball.setX(0);
+        }
+        if(ball.getX()>=800){
+            ball.setX(800);
+        }
+        if(ball.getY()<=0){
+            ball.setY(0);
+        }
+        if(ball.getY()>=600){
+            ball.setY(600);
+        }
+        if(player1.getX()<=0){
+            player1.setX(0);
+        }
+        if(player1.getX()>=800){
+            player1.setX(800);
+        }
+        if(player1.getY()<=0){
+            player1.setY(0);
+        }
+        if(player1.getY()>=600){
+            player1.setY(600);
+        }
+         if(player2.getX()<=0){
+            player2.setX(0);
+        }
+        if(player2.getX()>=800){
+            player2.setX(800);
+        }
+        if(player2.getY()<=0){
+            player2.setY(0);
+        }
+        if(player2.getY()>=600){
+            player2.setY(600);
+        }
+    }
     private void checkCollisions(){
         if(ball.isGoal()&& player1.getBounds().intersects(ball.getBounds())){
-        player1.setVx(7);
-        player1.setVy(-7);
-        //if player1
-        ball.setVx(player1.getVx());
-        ball.setVy(player1.getVy());
+            ball.setVx(player1.getVx());
+            ball.setVy(player1.getVy());
+            if(player1.getVx()==0 && player1.getVy()==0){
+                ball.stop();
+            }
         }
-        if(ball.getBounds().intersects(player2.getBounds())){
-            player2.setVx(-5);
+        if(ball.isGoal()&& player2.getBounds().intersects(ball.getBounds())){
+            if(goal2.getX()> player2.getX()){
+                if (goal2.getX()< player2.getX()){
+                    player2.setX(player2.getX()-3);
+                }
+                if (goal2.getY()> player2.getY()){
+                    player2.setY(player2.getY()+3);
+                }
+                if (goal2.getY()< player2.getY()){
+                    player2.setY(player2.getY()-3);
+                }
+            }
+            player2.setVx(-3);
             ball.setVx(player2.getVx());
-            if (goal2.getX()> player2.getX()){
-            player2.setX(player2.getX()+5);
-            }
-            if (goal2.getX()< player2.getX()){
-            player2.setX(player2.getX()-5);
-            }
-            if (goal2.getY()> player2.getY()){
-            player2.setY(player2.getY()+5);
-            }
-            if (goal2.getY()< player2.getY()){
-            player2.setY(player2.getY()-5);
-            }
+            player2.setVy(-3);
+            ball.setVy(player2.getVy());
         }
         if(ball.getBounds().intersects(goal1.getBounds())){
             player1.setScore(player1.getScore()+1);
@@ -101,20 +135,18 @@ public class Field extends JPanel {
     
     public void chaseBall(){
         if (ball.getX()> player2.getX()){
-            player2.setX(player2.getX()+5);
+            player2.setX(player2.getX()+3);
         }
         if (ball.getX()< player2.getX()){
-            player2.setX(player2.getX()-5);
+            player2.setX(player2.getX()-3);
         }
         if (ball.getY()> player2.getY()){
-            player2.setY(player2.getY()+5);
+            player2.setY(player2.getY()+3);
         }
         if (ball.getY()< player2.getY()){
-            player2.setY(player2.getY()-5);
+            player2.setY(player2.getY()-3);
         }
     }
-    
-
     
     public void keyPressed(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_RIGHT) {

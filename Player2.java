@@ -19,11 +19,12 @@ public class Player2 {
     private Rectangle bounds;
     private Color color;
     private boolean alive;
+    private final int SPEED = 15;
     
 public Player2(int cWidth, int cHeight) {
         this.alive = true;
-        this.x = cWidth;
-        this.y = 400;
+        this.x = cWidth-30;
+        this.y = 200;
         this.vx = 0;
         this.vy = 0;
         this.width = 50;
@@ -90,6 +91,16 @@ public Player2(int cWidth, int cHeight) {
     }
        
     
+    public void move(String direction) {        
+        if (direction.equals("right"))
+            vx = SPEED;
+        else if (direction.equals("left"))
+            vx = -SPEED;
+        else if (direction.equals("up"))
+            vy = -SPEED;
+        else if (direction.equals("down"))
+            vy = SPEED;
+    }
     
      public void draw(Graphics g) {
         g.setColor(this.color);

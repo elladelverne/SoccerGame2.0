@@ -22,6 +22,7 @@ public class Field extends JPanel {
     private Ball ball;
     private Goal goal1;
     private Goal goal2;
+    private Goalie gk1;
 
     public Field() {
         super();
@@ -30,6 +31,7 @@ public class Field extends JPanel {
         ball = new Ball(800, 600);
         goal1 = new Goal(800,300);
         goal2 = new Goal(0, 300);
+        gk1 = new Goalie(10, 300);
         timer = new Timer();
         timer.scheduleAtFixedRate(new ScheduleTask(), 100, 1000/12);
     }
@@ -43,6 +45,7 @@ public class Field extends JPanel {
         if (ball.isGoal()) ball.draw(g);
         goal1.draw(g);
         goal2.draw(g);
+        gk1.draw(g);
     }
 
     private class ScheduleTask extends TimerTask {
@@ -54,30 +57,34 @@ public class Field extends JPanel {
             ball.update();
             goal1.update();
             goal2.update();
+            gk1.update();
             checkCollisions();
             checkBoundaries();
-            chaseBall();
             repaint();
         }
     }
     private void checkBoundaries(){
         if(ball.getX()<=0){
             ball.setX(0);
+            ball.setVx(5);
         }
         if(ball.getX()>=800){
             ball.setX(800);
+            ball.setVx(- 5);
         }
         if(ball.getY()<=0){
             ball.setY(0);
+            ball.setVy(5);
         }
         if(ball.getY()>=600){
             ball.setY(600);
+            ball.setVy(-5);
         }
         if(player1.getX()<=0){
             player1.setX(0);
         }
-        if(player1.getX()>=800){
-            player1.setX(800);
+        if(player1.getX()>=750){
+            player1.setX(750);
         }
         if(player1.getY()<=0){
             player1.setY(0);
@@ -88,8 +95,8 @@ public class Field extends JPanel {
          if(player2.getX()<=0){
             player2.setX(0);
         }
-        if(player2.getX()>=800){
-            player2.setX(800);
+        if(player2.getX()>=750){
+            player2.setX(750);
         }
         if(player2.getY()<=0){
             player2.setY(0);
@@ -97,7 +104,21 @@ public class Field extends JPanel {
         if(player2.getY()>=600){
             player2.setY(600);
         }
+        if(gk1.getY()<= 300){
+            gk1.setVy(5);
+        }
+        if(gk1.getY()>= 450){
+            gk1.setVy(-5);
+        }
     }
+    
+//    private void ballStop(){
+//        for (int i = 0; i < 10; i++){
+//            ball.setVx(ball.getVx() -1);
+//            ball.setVy(ball.getVy() -1);
+//            }
+//    }
+    
     private void checkCollisions(){
         if(ball.isGoal()&& player1.getBounds().intersects(ball.getBounds())){
             ball.setVx(player1.getVx());
@@ -107,45 +128,36 @@ public class Field extends JPanel {
             }
         }
         if(ball.isGoal()&& player2.getBounds().intersects(ball.getBounds())){
-                if (goal2.getX()< player2.getX()){
-                    player2.setVx(player2.getVx()-3);
-                }
-                if (goal2.getY()> player2.getY()){
-                    player2.setY(player2.getY()+3);
-                }
-                if (goal2.getY()< player2.getY()){
-                    player2.setY(player2.getY()-3);
-                }
-            player2.setVx(-3);
             ball.setVx(player2.getVx());
-            player2.setVy(-3);
             ball.setVy(player2.getVy());
+            if(player2.getVx()==0 && player2.getVy()==0){
+                ball.stop();
+            }
         }
         if(ball.getBounds().intersects(goal1.getBounds())){
             player1.setScore(player1.getScore()+1);
-            System.out.println("player:" + player1.getScore());
+            restart(800,400);
+            System.out.println("player 1:" + player1.getScore());
         }
         if(ball.getBounds().intersects(goal2.getBounds())){
             player2.setScore(player2.getScore()+1);
-            System.out.println("computer:" + player2.getScore());
+            restart(800,400);
+            System.out.println("player 2:" + player2.getScore());
         }
     }
-    
-    public void chaseBall(){
-        if (ball.getX()> player2.getX()){
-            player2.setX(player2.getX()+3);
-        }
-        if (ball.getX()< player2.getX()){
-            player2.setX(player2.getX()-3);
-        }
-        if (ball.getY()> player2.getY()){
-            player2.setY(player2.getY()+3);
-        }
-        if (ball.getY()< player2.getY()){
-            player2.setY(player2.getY()-3);
+
+    private void restart(int cWidth, int cHeight){
+        if(ball.getBounds().intersects(goal1.getBounds())||ball.getBounds().intersects(goal2.getBounds())){
+            ball.setX(425);
+            ball.setY(200);
+            player1.setX(1);
+            player2.setX(cWidth - 30);
+            player1.setY(200);
+            player2.setY(200);
+            ball.stop();
         }
     }
-    
+
     public void keyPressed(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
             player1.move("right");
@@ -158,6 +170,18 @@ public class Field extends JPanel {
         }
         else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
             player1.move("down");
+        }
+        if (e.getKeyCode() == KeyEvent.VK_D) {
+            player2.move("right");
+        }
+        else if (e.getKeyCode() == KeyEvent.VK_A) {
+           player2.move("left");
+        }
+        else if (e.getKeyCode() == KeyEvent.VK_W) {
+            player2.move("up");
+        }
+        else if (e.getKeyCode() == KeyEvent.VK_S) {
+            player2.move("down");
         }
     }
 
@@ -176,6 +200,22 @@ public class Field extends JPanel {
 
         if (e.getKeyCode() == KeyEvent.VK_DOWN) {
             player1.stop();
+        }
+        
+        if (e.getKeyCode() == KeyEvent.VK_D) {
+            player2.stop();
+        }
+        
+        if (e.getKeyCode() == KeyEvent.VK_A) {
+           player2.stop();
+        }
+        
+        if (e.getKeyCode() == KeyEvent.VK_W) {
+            player2.stop();
+        }
+        
+        if (e.getKeyCode() == KeyEvent.VK_S) {
+            player2.stop();
         }
 
     }

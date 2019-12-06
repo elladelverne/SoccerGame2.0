@@ -15,15 +15,16 @@ import java.awt.Rectangle;
  * @author 801621
  */
 public class Ball {
-    private int height, width, x, y, vx, vy;
+    private int height, width, x, y;
+    private double vx, vy;
     private Rectangle bounds;
     private Color color;
     private boolean goal;
     
 public Ball(int cWidth, int cHeight) {
         this.goal = true;
-        this.x = cWidth / 2;
-        this.y = cHeight / 2;
+        this.x = 425;
+        this.y = 200;
         this.vx = 0;
         this.vy = 0;
         this.width = 25;
@@ -39,21 +40,22 @@ public Ball(int cWidth, int cHeight) {
         this.goal = goal;
     }
 
-    public int getVx() {
+    public double getVx() {
         return vx;
     }
 
-    public void setVx(int vx) {
+    public void setVx(double vx) {
         this.vx = vx;
     }
 
-    public int getVy() {
+    public double getVy() {
         return vy;
     }
 
-    public void setVy(int vy) {
+    public void setVy(double vy) {
         this.vy = vy;
     }
+
 
     public Rectangle getBounds() {
         return bounds;

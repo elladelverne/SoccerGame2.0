@@ -9,23 +9,32 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
-
 /**
  *
  * @author 801621
  */
-public class Goal {
-    private int height, width, x, y;
+public class Goalie {
+    private int height, width, x, y, vy;
     private Rectangle bounds;
     private Color color;
+    private final int SPEED = 15;
     
-public Goal(int x, int cHeight) {
+public Goalie(int x, int cHeight) {
         this.x = x;
         this.y = cHeight/2;
-        this.width = 10;
-        this.height = 150;
-        this.color = Color.WHITE;
+        this.vy = 5;
+        this.width = 5;
+        this.height = 15;
+        this.color = Color.GRAY;
         this.bounds = new Rectangle(this.x, this.y, this.width, this.height);
+    }
+
+    public int getVy() {
+        return vy;
+    }
+
+    public void setVy(int vy) {
+        this.vy = vy;
     }
 
     public int getX() {
@@ -52,8 +61,15 @@ public Goal(int x, int cHeight) {
         this.bounds = bounds;
     }
 
-
-
+    public void move(String direction) {        
+        if (y == 300){
+            vy = -SPEED;
+        }
+        else if (direction.equals("down")){
+            vy = SPEED;
+        }
+    }
+    
     public void draw(Graphics g) {
         g.setColor(this.color);
         Graphics2D g2d = (Graphics2D) g;

@@ -160,62 +160,62 @@ public class Field extends JPanel {
 
     public void keyPressed(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-            player1.move("right");
-        }
-        else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-           player1.move("left");
-        }
-        else if (e.getKeyCode() == KeyEvent.VK_UP) {
-            player1.move("up");
-        }
-        else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-            player1.move("down");
-        }
-        if (e.getKeyCode() == KeyEvent.VK_D) {
             player2.move("right");
         }
-        else if (e.getKeyCode() == KeyEvent.VK_A) {
+        else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
            player2.move("left");
         }
-        else if (e.getKeyCode() == KeyEvent.VK_W) {
+        else if (e.getKeyCode() == KeyEvent.VK_UP) {
             player2.move("up");
         }
-        else if (e.getKeyCode() == KeyEvent.VK_S) {
+        else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
             player2.move("down");
+        }
+        if (e.getKeyCode() == KeyEvent.VK_D) {
+            player1.move("right");
+        }
+        else if (e.getKeyCode() == KeyEvent.VK_A) {
+           player1.move("left");
+        }
+        else if (e.getKeyCode() == KeyEvent.VK_W) {
+            player1.move("up");
+        }
+        else if (e.getKeyCode() == KeyEvent.VK_S) {
+            player1.move("down");
         }
     }
 
     public void keyReleased(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-            player1.stop();
+            player2.stop();
         }
 
         if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-            player1.stop();
+            player2.stop();
         }
 
         if (e.getKeyCode() == KeyEvent.VK_UP) {
-            player1.stop();
+            player2.stop();
         }
 
         if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-            player1.stop();
+            player2.stop();
         }
         
         if (e.getKeyCode() == KeyEvent.VK_D) {
-            player2.stop();
+            player1.stop();
         }
         
         if (e.getKeyCode() == KeyEvent.VK_A) {
-           player2.stop();
+           player1.stop();
         }
         
         if (e.getKeyCode() == KeyEvent.VK_W) {
-            player2.stop();
+            player1.stop();
         }
         
         if (e.getKeyCode() == KeyEvent.VK_S) {
-            player2.stop();
+            player1.stop();
         }
 
     }

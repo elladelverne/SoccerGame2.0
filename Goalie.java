@@ -22,7 +22,7 @@ public class Goalie {
 public Goalie(int x, int cHeight) {
         this.x = x;
         this.y = cHeight/2;
-        this.vy = 5;
+        this.vy = SPEED;
         this.width = 5;
         this.height = 15;
         this.color = Color.GRAY;
@@ -62,12 +62,13 @@ public Goalie(int x, int cHeight) {
     }
 
     public void move(String direction) {        
-        if (y == 300){
+        if (y <= 300){
             vy = -SPEED;
         }
-        else if (direction.equals("down")){
+        else if (y >= 450){
             vy = SPEED;
         }
+
     }
     
     public void draw(Graphics g) {

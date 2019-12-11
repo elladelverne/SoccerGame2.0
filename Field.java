@@ -23,6 +23,7 @@ public class Field extends JPanel {
     private Goal goal1;
     private Goal goal2;
     private Goalie gk1;
+    private Goalie gk2;
 
     public Field() {
         super();
@@ -32,6 +33,7 @@ public class Field extends JPanel {
         goal1 = new Goal(800,300);
         goal2 = new Goal(0, 300);
         gk1 = new Goalie(10, 300);
+        gk2 = new Goalie (785, 300);
         timer = new Timer();
         timer.scheduleAtFixedRate(new ScheduleTask(), 100, 1000/12);
     }
@@ -46,6 +48,7 @@ public class Field extends JPanel {
         goal1.draw(g);
         goal2.draw(g);
         gk1.draw(g);
+        gk2.draw(g);
     }
 
     private class ScheduleTask extends TimerTask {
@@ -58,6 +61,7 @@ public class Field extends JPanel {
             goal1.update();
             goal2.update();
             gk1.update();
+            gk2.update();
             checkCollisions();
             checkBoundaries();
             repaint();
@@ -104,21 +108,7 @@ public class Field extends JPanel {
         if(player2.getY()>=600){
             player2.setY(600);
         }
-        if(gk1.getY()<= 300){
-            gk1.setVy(5);
-        }
-        if(gk1.getY()>= 450){
-            gk1.setVy(-5);
-        }
     }
-    
-//    private void ballStop(){
-//        for (int i = 0; i < 10; i++){
-//            ball.setVx(ball.getVx() -1);
-//            ball.setVy(ball.getVy() -1);
-//            }
-//    }
-    
     private void checkCollisions(){
         if(ball.isGoal()&& player1.getBounds().intersects(ball.getBounds())){
             ball.setVx(player1.getVx());
@@ -143,6 +133,14 @@ public class Field extends JPanel {
             player2.setScore(player2.getScore()+1);
             restart(800,400);
             System.out.println("player 2:" + player2.getScore());
+        }
+        if(ball.getBounds().intersects(gk1.getBounds())){
+            ball.setVy(0);
+            ball.setVx(5);
+        }
+        if(ball.getBounds().intersects(gk2.getBounds())){
+            ball.setVx(-5);
+            ball.setVy(0);
         }
     }
 

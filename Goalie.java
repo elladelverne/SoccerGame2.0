@@ -14,17 +14,18 @@ import java.awt.Rectangle;
  * @author 801621
  */
 public class Goalie {
-    private int height, width, x, y, vy;
+    private int height, width, x, y, vy, vx;
     private Rectangle bounds;
     private Color color;
-    private final int SPEED = 15;
+    private final int SPEED = 5;
     
 public Goalie(int x, int cHeight) {
         this.x = x;
         this.y = cHeight/2;
         this.vy = SPEED;
-        this.width = 5;
-        this.height = 15;
+        this.vx = 0;
+        this.width = 15;
+        this.height = 30;
         this.color = Color.GRAY;
         this.bounds = new Rectangle(this.x, this.y, this.width, this.height);
     }
@@ -60,15 +61,14 @@ public Goalie(int x, int cHeight) {
     public void setBounds(Rectangle bounds) {
         this.bounds = bounds;
     }
-
-    public void move(String direction) {        
-        if (y <= 300){
-            vy = -SPEED;
-        }
-        else if (y >= 450){
+    
+    public void move() {        
+        if(y == 150){
             vy = SPEED;
         }
-
+        else if(y == 285){
+            vy = -SPEED;
+        }
     }
     
     public void draw(Graphics g) {
@@ -76,8 +76,9 @@ public Goalie(int x, int cHeight) {
         Graphics2D g2d = (Graphics2D) g;
         g2d.fill(bounds);
     }
-     
     public void update() {
+        move();
+        this.y += vy;
         this.bounds = new Rectangle(this.x, this.y, this.width, this.height);
     }
 }

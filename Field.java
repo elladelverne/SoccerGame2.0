@@ -134,6 +134,14 @@ public class Field extends JPanel {
             restart(800,400);
             System.out.println("player 2:" + player2.getScore());
         }
+        if(player2.getScore() >= 7){
+            System.out.println("Player 2 won!");
+            System.exit(0);
+        }
+        else if(player1.getScore() >= 7){
+            System.out.println("Player 1 won!");
+            System.exit(0);
+        }
         if(ball.getBounds().intersects(gk1.getBounds())){
             ball.setVy(0);
             ball.setVx(5);

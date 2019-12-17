@@ -52,8 +52,6 @@ public Goal(int x, int cHeight) {
         this.bounds = bounds;
     }
 
-
-
     public void draw(Graphics g) {
         g.setColor(this.color);
         Graphics2D g2d = (Graphics2D) g;
